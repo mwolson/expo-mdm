@@ -265,19 +265,26 @@ class ExpoMdmModule : Module() {
                     data[key] = appRestrictions.getString(key) ?: ""
                 }
                 Log.d(TAG, "BroadcastReceiver onReceive: Sending event '$APP_CONFIG_CHANGED_EVENT' with data: $data")
-                // Use the Expo Module's built-in `sendEvent` function.
-                // Guard against the module registry not being ready yet (e.g. during
-                // startup in bridgeless / dev-client mode).
-                try {
-                    sendEvent(APP_CONFIG_CHANGED_EVENT, data)
-                } catch (e: IllegalArgumentException) {
-                    Log.w(TAG, "BroadcastReceiver onReceive: Module registry not ready, dropping event.", e)
-                } catch (e: IllegalStateException) {
-                    Log.w(TAG, "BroadcastReceiver onReceive: Module registry not ready, dropping event.", e)
-                }
+                emitManagedConfigChanged(data)
             }
         }
         Log.d(TAG, "maybeRegisterReceiver: Registering receiver for ACTION_APPLICATION_RESTRICTIONS_CHANGED.")
         reactContext.registerReceiver(restrictionReceiver, restrictionFilter)
+    }
+
+    private fun emitManagedConfigChanged(data: Map<String, Any>) {
+        val reactContext = appContext.reactContext
+        if (reactContext == null) {
+            Log.w(TAG, "emitManagedConfigChanged: React context is null. Dropping event.")
+            return
+        }
+
+        try {
+            sendEvent(APP_CONFIG_CHANGED_EVENT, data)
+        } catch (error: IllegalArgumentException) {
+            Log.w(TAG, "emitManagedConfigChanged: Module registry is not ready. Dropping event.", error)
+        } catch (error: IllegalStateException) {
+            Log.w(TAG, "emitManagedConfigChanged: Event emitter is unavailable. Dropping event.", error)
+        }
     }
 }

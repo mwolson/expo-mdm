@@ -1,7 +1,7 @@
 {
-  "name": "expo-mdm",
+  "name": "@mwolson-org/expo-mdm",
   "version": "0.1.12",
-  "description": "An expo module to access Managed Device Management (MDM) features on iOS and Android.",
+  "description": "Fork of expo-mdm with bridgeless-safe Android managed app restriction events.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "plugins": [
@@ -31,13 +31,16 @@
     "expo-mdm",
     "ExpoMdm"
   ],
-  "repository": "https://github.com/pedroafsouza/expo-mdm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwolson/expo-mdm.git"
+  },
   "bugs": {
-    "url": "https://github.com/pedroafsouza/expo-mdm/issues"
+    "url": "https://github.com/mwolson/expo-mdm/issues"
   },
   "author": "Pedro Augusto Freitas de Souza <pefreita@microsoft.com> (https://github.com/pedroafsouza)",
   "license": "MIT",
-  "homepage": "https://github.com/pedroafsouza/expo-mdm#readme",
+  "homepage": "https://github.com/mwolson/expo-mdm#readme",
   "devDependencies": {
     "@expo/config-plugins": "^9.0.0",
     "expo-module-scripts": "^4.0.0"
@@ -46,5 +49,8 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

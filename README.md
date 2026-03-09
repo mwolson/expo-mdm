@@ -2,6 +2,9 @@
 
 A React Native library for integrating Mobile Device Management (MDM) capabilities into Expo applications.
 
+Published here as `@mwolson-org/expo-mdm`, this fork carries an Android fix for
+bridgeless/dev-client managed-config change events.
+
 ## Overview
 
 This project has been created with the intention of integrating MDM functionality for React Native applications. While there is already a project called `react-native-mdm` that provides similar functionality, this library aims to provide better Expo compatibility and modern implementation.
@@ -28,9 +31,9 @@ Both platforms support MDM configuration reading and app locking features.
 ### Installation
 
 ```bash
-npm install expo-mdm
+npm install @mwolson-org/expo-mdm
 # or
-yarn add expo-mdm
+yarn add @mwolson-org/expo-mdm
 ```
 
 ### Configuration
@@ -46,7 +49,7 @@ Add the expo-mdm plugin to your `app.json` or `app.config.js`:
   "expo": {
     "plugins": [
       [
-        "expo-mdm",
+        "@mwolson-org/expo-mdm",
         {
           "android": {
             "QueryPackages": [

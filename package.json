@@ -1,6 +1,6 @@
 {
   "name": "@mwolson-org/expo-mdm",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "description": "Fork of expo-mdm with bridgeless-safe Android managed app restriction events.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
